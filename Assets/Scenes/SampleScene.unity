@@ -477,7 +477,7 @@ GameObject:
   - component: {fileID: 1140457132}
   m_Layer: 0
   m_Name: Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -695,6 +695,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2099028999}
+  - component: {fileID: 2099029001}
   - component: {fileID: 2099028998}
   - component: {fileID: 2099028997}
   - component: {fileID: 2099029000}
@@ -809,3 +810,17 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
+--- !u!114 &2099029001
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2099028996}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b29d19905952b94c8bda7bd6ce6eb12, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  <MovementAcceleration>k__BackingField: 20
+  <JumpAcceleration>k__BackingField: 5
