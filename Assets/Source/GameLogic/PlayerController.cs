@@ -13,19 +13,28 @@ namespace SDAZDGAMEpol5.GameLogic
         private float MovementAcceleration { get; set; } // Property
         
         [field: SerializeField]
-        private float JumpAcceleration { get; set; }
+        private float GroundJumpAcceleration { get; set; }
+        
+        [field: SerializeField]
+        private float AirJumpAcceleration { get; set; }
+        
+        [field: SerializeField]
+        private int AllowedAirJumps { get; set; }
         
         private Rigidbody2D Rigid { get; set; }
         
         private float MoveDirection { get; set; } // -1 - move left, 1 - move right, 0 - don't move
         private bool ShouldJump { get; set; }
         private bool IsGrounded { get; set; }
+        private int UsedAirJumps { get; set; }
+        private bool IsAirJump { get; set; }
         
         private void Start()
         {
             // Invoked once, at the beginning of this GameObject's life cycle
             Rigid = GetComponent<Rigidbody2D>(); // NEVER use GetComponent on Update or FixedUpdate!!!
             IsGrounded = false;
+            UsedAirJumps = 0;
         }
 
         private void Update()
@@ -48,9 +57,21 @@ namespace SDAZDGAMEpol5.GameLogic
                 MoveDirection = 0.0f;
             }
 
-            if (Input.GetKeyDown(KeyCode.Space) && IsGrounded)
+            if (Input.GetKeyDown(KeyCode.Space) && !ShouldJump)
             {
-                ShouldJump = true;
+                if (IsGrounded)
+                {
+                    // Jump from ground
+                    ShouldJump = true;
+                    IsAirJump = false;
+                }
+                else if (UsedAirJumps < AllowedAirJumps)
+                {
+                    // Air jump
+                    ShouldJump = true;
+                    IsAirJump = true;
+                    UsedAirJumps++;
+                }
             }
         }
 
@@ -63,8 +84,10 @@ namespace SDAZDGAMEpol5.GameLogic
 
             if (ShouldJump)
             {
+                var force = Vector2.up * (IsAirJump ? AirJumpAcceleration : GroundJumpAcceleration);
+                
                 // Jump
-                Rigid.AddForce(Vector2.up * JumpAcceleration, ForceMode2D.Impulse);
+                Rigid.AddForce(force, ForceMode2D.Impulse);
 
                 ShouldJump = false;
             }
@@ -79,6 +102,7 @@ namespace SDAZDGAMEpol5.GameLogic
             {
                 // Hit the ground
                 IsGrounded = true;
+                UsedAirJumps = 0;
             }
         }
 

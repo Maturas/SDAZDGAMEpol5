@@ -802,11 +802,11 @@ Rigidbody2D:
   m_UseFullKinematicContacts: 0
   m_UseAutoMass: 0
   m_Mass: 1
-  m_LinearDrag: 1
+  m_LinearDrag: 4
   m_AngularDrag: 0.05
-  m_GravityScale: 1
+  m_GravityScale: 4
   m_Material: {fileID: 0}
-  m_Interpolate: 0
+  m_Interpolate: 1
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
@@ -822,5 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b29d19905952b94c8bda7bd6ce6eb12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <MovementAcceleration>k__BackingField: 20
-  <JumpAcceleration>k__BackingField: 5
+  <MovementAcceleration>k__BackingField: 50
+  <GroundJumpAcceleration>k__BackingField: 20
+  <AirJumpAcceleration>k__BackingField: 25
+  <AllowedAirJumps>k__BackingField: 1
