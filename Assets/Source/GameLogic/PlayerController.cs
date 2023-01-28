@@ -28,6 +28,7 @@ namespace SDAZDGAMEpol5.GameLogic
         private bool IsGrounded { get; set; }
         private int UsedAirJumps { get; set; }
         private bool IsAirJump { get; set; }
+        private int CollectedPoints { get; set; }
         
         private void Start()
         {
@@ -35,6 +36,7 @@ namespace SDAZDGAMEpol5.GameLogic
             Rigid = GetComponent<Rigidbody2D>(); // NEVER use GetComponent on Update or FixedUpdate!!!
             IsGrounded = false;
             UsedAirJumps = 0;
+            CollectedPoints = 0;
         }
 
         private void Update()
@@ -91,6 +93,11 @@ namespace SDAZDGAMEpol5.GameLogic
 
                 ShouldJump = false;
             }
+        }
+
+        public void OnPointCollected()
+        {
+            CollectedPoints++;
         }
 
         // Collision detection requirements:
