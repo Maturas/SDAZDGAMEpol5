@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 namespace SDAZDGAMEpol5.GameLogic
