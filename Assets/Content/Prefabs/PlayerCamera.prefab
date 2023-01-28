@@ -47,8 +47,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FollowTarget>k__BackingField: {fileID: 0}
-  <SmoothDampTime>k__BackingField: 0.3
-  <SmoothDampMaxSpeed>k__BackingField: 10
+  <SmoothDampTime>k__BackingField: 0.2
+  <SmoothDampMaxSpeed>k__BackingField: 30
   <FreezeXAxis>k__BackingField: 0
   <FreezeYAxis>k__BackingField: 1
   <FreezeZAxis>k__BackingField: 1

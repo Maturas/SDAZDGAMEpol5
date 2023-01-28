@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 
 namespace SDAZDGAMEpol5.GameLogic
@@ -8,6 +9,9 @@ namespace SDAZDGAMEpol5.GameLogic
         
         // [SerializeField] // how to serialize a private field
         // private float MovementAcceleration; // private field
+        
+        [field: SerializeField]
+        private TextMeshProUGUI PointsCounter { get; set; }
         
         [field: SerializeField] // how to serialize a property
         private float MovementAcceleration { get; set; } // Property
@@ -36,7 +40,7 @@ namespace SDAZDGAMEpol5.GameLogic
             Rigid = GetComponent<Rigidbody2D>(); // NEVER use GetComponent on Update or FixedUpdate!!!
             IsGrounded = false;
             UsedAirJumps = 0;
-            CollectedPoints = 0;
+            SetPoints(0);
         }
 
         private void Update()
@@ -97,7 +101,7 @@ namespace SDAZDGAMEpol5.GameLogic
 
         public void OnPointCollected()
         {
-            CollectedPoints++;
+            SetPoints(CollectedPoints + 1);
         }
 
         // Collision detection requirements:
@@ -120,6 +124,12 @@ namespace SDAZDGAMEpol5.GameLogic
                 // Hit the ground
                 IsGrounded = false;
             }
+        }
+
+        private void SetPoints(int points)
+        {
+            CollectedPoints = points;
+            PointsCounter.text = points.ToString();
         }
     }   
 }
