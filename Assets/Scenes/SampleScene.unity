@@ -1058,14 +1058,6 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4578610484277389571, guid: fc245070db9138e419a580198ba3b464, type: 3}
-      propertyPath: <FreezeYAxis>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578610484277389571, guid: fc245070db9138e419a580198ba3b464, type: 3}
-      propertyPath: <FreezeZAxis>k__BackingField
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4578610484277389571, guid: fc245070db9138e419a580198ba3b464, type: 3}
       propertyPath: <FollowTarget>k__BackingField
       value: 
       objectReference: {fileID: 419381950}

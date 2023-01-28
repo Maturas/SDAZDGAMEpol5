@@ -8,10 +8,10 @@ namespace SDAZDGAMEpol5.GameLogic
         private Transform FollowTarget { get; set; }
         
         [field: SerializeField]
-        private float FollowTargetSpeed { get; set; }
-
+        private float SmoothDampTime { get; set; }
+        
         [field: SerializeField]
-        private float FollowTargetDistanceThreshold { get; set; }
+        private float SmoothDampMaxSpeed { get; set; }
 
         [field: SerializeField]
         private bool FreezeXAxis { get; set; }
@@ -22,7 +22,7 @@ namespace SDAZDGAMEpol5.GameLogic
         [field: SerializeField]
         private bool FreezeZAxis { get; set; }
         
-        private Vector3 LastTargetPosition { get; set; }
+        private Vector3 _currentSmoothDampVelocity;
 
         private void Update()
         {
@@ -43,19 +43,15 @@ namespace SDAZDGAMEpol5.GameLogic
             if (FreezeZAxis) 
                 currentTargetPosition.z = currentPosition.z;
 
-            // Don't follow the target if the distance threshold hasn't been reached
-            if (Vector3.Distance(currentPosition, currentTargetPosition) < FollowTargetDistanceThreshold)
-                return;
-
             // Possible solutions for smooth linear movement:
             // Vector3.Lerp
             // Vector3.MoveTowards
             // Vector3.SmoothDamp
             // Transform.Translate
             // Rigidbody2D.MovePosition
-            var maxDistanceDelta = FollowTargetSpeed * Time.deltaTime;
-            transform.position = Vector3.MoveTowards(currentPosition, currentTargetPosition, maxDistanceDelta);
-            LastTargetPosition = currentTargetPosition;
+
+            transform.position = Vector3.SmoothDamp(currentPosition, currentTargetPosition,
+                ref _currentSmoothDampVelocity, SmoothDampTime, SmoothDampMaxSpeed);
         }
     }
 }
