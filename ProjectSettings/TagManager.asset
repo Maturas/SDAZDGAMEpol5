@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Ground
   - Point
+  - DeadlyObstacle
   layers:
   - Default
   - TransparentFX

@@ -42,6 +42,7 @@ namespace SDAZDGAMEpol5.GameLogic
         public void KillPlayer()
         {
             GameOverScreen.SetActive(true);
+            PointsCounter.gameObject.SetActive(false);
             PlayerController.enabled = false;
             CameraController.enabled = false;
             CurrentFadeCoroutine = StartCoroutine(FadeAwayPlayer());
@@ -51,7 +52,15 @@ namespace SDAZDGAMEpol5.GameLogic
         {
             SetPoints(CollectedPoints + 1);
         }
-        
+
+        private void OnCollisionEnter2D(Collision2D collision)
+        {
+            if (collision.gameObject.CompareTag("DeadlyObstacle"))
+            {
+                KillPlayer();
+            }
+        }
+
         private void SetPoints(int points)
         {
             CollectedPoints = points;
