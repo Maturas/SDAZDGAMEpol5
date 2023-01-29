@@ -50,6 +50,8 @@ namespace SDAZDGAMEpol5.GameLogic
             // GetKey - returns true while the key is pressed down (continuously)
             // GetKeyDown - returns true on one frame, when the user has pressed the key
             // GetKeyUp - returns true on one frame, when the user has released the key
+            
+            // Read movement input from the user's keyboard
             if (Input.GetKey(KeyCode.A))
             {
                 MoveDirection = -1.0f;
@@ -63,6 +65,7 @@ namespace SDAZDGAMEpol5.GameLogic
                 MoveDirection = 0.0f;
             }
 
+            // Jump if space is pressed
             if (Input.GetKeyDown(KeyCode.Space) && !ShouldJump)
             {
                 if (IsGrounded)
