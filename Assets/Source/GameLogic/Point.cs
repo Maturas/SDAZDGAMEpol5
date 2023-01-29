@@ -8,8 +8,8 @@ namespace SDAZDGAMEpol5.GameLogic
         {
             if (other.gameObject.CompareTag("Player"))
             {
-                var playerController = other.gameObject.GetComponent<PlayerController>();
-                playerController.OnPointCollected();
+                var playerLogic = other.gameObject.GetComponent<PlayerLogic>();
+                playerLogic.OnPointCollected();
                 Destroy(gameObject);
             }
         }

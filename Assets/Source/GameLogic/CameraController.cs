@@ -8,6 +8,9 @@ namespace SDAZDGAMEpol5.GameLogic
         private Transform FollowTarget { get; set; }
         
         [field: SerializeField]
+        private Vector3 Offset { get; set; }
+        
+        [field: SerializeField]
         private float SmoothDampTime { get; set; }
         
         [field: SerializeField]
@@ -31,7 +34,7 @@ namespace SDAZDGAMEpol5.GameLogic
 
             // Calculate target camera position based on target's position
             var currentPosition = transform.position;
-            var currentTargetPosition = FollowTarget.position;
+            var currentTargetPosition = FollowTarget.position + Offset;
 
             // Freeze axes if necessary
             if (FreezeXAxis) 

@@ -1,4 +1,3 @@
-using TMPro;
 using UnityEngine;
 
 namespace SDAZDGAMEpol5.GameLogic
@@ -9,10 +8,7 @@ namespace SDAZDGAMEpol5.GameLogic
         
         // [SerializeField] // how to serialize a private field
         // private float MovementAcceleration; // private field
-        
-        [field: SerializeField]
-        private TextMeshProUGUI PointsCounter { get; set; }
-        
+
         [field: SerializeField] // how to serialize a property
         private float MovementAcceleration { get; set; } // Property
         
@@ -32,7 +28,6 @@ namespace SDAZDGAMEpol5.GameLogic
         private bool IsGrounded { get; set; }
         private int UsedAirJumps { get; set; }
         private bool IsAirJump { get; set; }
-        private int CollectedPoints { get; set; }
         
         private void Start()
         {
@@ -40,7 +35,6 @@ namespace SDAZDGAMEpol5.GameLogic
             Rigid = GetComponent<Rigidbody2D>(); // NEVER use GetComponent on Update or FixedUpdate!!!
             IsGrounded = false;
             UsedAirJumps = 0;
-            SetPoints(0);
         }
 
         private void Update()
@@ -50,6 +44,12 @@ namespace SDAZDGAMEpol5.GameLogic
             // GetKey - returns true while the key is pressed down (continuously)
             // GetKeyDown - returns true on one frame, when the user has pressed the key
             // GetKeyUp - returns true on one frame, when the user has released the key
+            
+            // TEMP
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                GetComponent<PlayerLogic>().KillPlayer();
+            }
             
             // Read movement input from the user's keyboard
             if (Input.GetKey(KeyCode.A))
@@ -101,12 +101,7 @@ namespace SDAZDGAMEpol5.GameLogic
                 ShouldJump = false;
             }
         }
-
-        public void OnPointCollected()
-        {
-            SetPoints(CollectedPoints + 1);
-        }
-
+        
         // Collision detection requirements:
         // Both objects have a collider
         // Detecting object has a rigidbody
@@ -127,12 +122,6 @@ namespace SDAZDGAMEpol5.GameLogic
                 // Hit the ground
                 IsGrounded = false;
             }
-        }
-
-        private void SetPoints(int points)
-        {
-            CollectedPoints = points;
-            PointsCounter.text = points.ToString();
         }
     }   
 }

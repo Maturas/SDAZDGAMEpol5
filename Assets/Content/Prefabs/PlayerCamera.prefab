@@ -47,10 +47,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   <FollowTarget>k__BackingField: {fileID: 0}
+  <Offset>k__BackingField: {x: 0, y: 3.5, z: 0}
   <SmoothDampTime>k__BackingField: 0.2
   <SmoothDampMaxSpeed>k__BackingField: 30
   <FreezeXAxis>k__BackingField: 0
-  <FreezeYAxis>k__BackingField: 1
+  <FreezeYAxis>k__BackingField: 0
   <FreezeZAxis>k__BackingField: 1
 --- !u!20 &4578610484277389821
 Camera:
