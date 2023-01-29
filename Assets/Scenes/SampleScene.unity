@@ -134,9 +134,10 @@ GameObject:
   - component: {fileID: 106313876}
   - component: {fileID: 106313879}
   - component: {fileID: 106313878}
+  - component: {fileID: 106313880}
   m_Layer: 0
   m_Name: Platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -235,6 +236,27 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!50 &106313880
+Rigidbody2D:
+  serializedVersion: 4
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 106313875}
+  m_BodyType: 1
+  m_Simulated: 1
+  m_UseFullKinematicContacts: 0
+  m_UseAutoMass: 0
+  m_Mass: 1
+  m_LinearDrag: 0
+  m_AngularDrag: 0.05
+  m_GravityScale: 1
+  m_Material: {fileID: 0}
+  m_Interpolate: 1
+  m_SleepingMode: 1
+  m_CollisionDetection: 0
+  m_Constraints: 0
 --- !u!1001 &114071054
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1345,7 +1367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 818f93edac204c58a7d5de43c06fa08e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <Platform>k__BackingField: {fileID: 106313876}
+  <Platform>k__BackingField: {fileID: 106313880}
   <A>k__BackingField: {fileID: 1971191264}
   <B>k__BackingField: {fileID: 1309367963}
   <TravelTime>k__BackingField: 5
@@ -1633,11 +1655,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5118613023657475796, guid: dc4ef56f4b8d1bf44afbb6cf8ca6a148, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: -0.01
       objectReference: {fileID: 0}
     - target: {fileID: 5118613023657475796, guid: dc4ef56f4b8d1bf44afbb6cf8ca6a148, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.5
+      value: -3.85
       objectReference: {fileID: 0}
     - target: {fileID: 5118613023657475796, guid: dc4ef56f4b8d1bf44afbb6cf8ca6a148, type: 3}
       propertyPath: m_LocalPosition.z
@@ -1679,6 +1701,10 @@ PrefabInstance:
       propertyPath: <PointsCounter>k__BackingField
       value: 
       objectReference: {fileID: 675576270}
+    - target: {fileID: 5118613023657475803, guid: dc4ef56f4b8d1bf44afbb6cf8ca6a148, type: 3}
+      propertyPath: m_CollisionDetection
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: dc4ef56f4b8d1bf44afbb6cf8ca6a148, type: 3}
 --- !u!1 &1309367962
@@ -1705,7 +1731,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1309367962}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 20.02, y: -2.98, z: 0}
+  m_LocalPosition: {x: 22.03, y: -2.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2215,7 +2241,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1971191263}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -20.01, y: -2.98, z: 0}
+  m_LocalPosition: {x: -20, y: -2.98, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

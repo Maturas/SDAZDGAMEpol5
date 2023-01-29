@@ -11,7 +11,10 @@ namespace SDAZDGAMEpol5.GameLogic
         {
             if (!col.gameObject.isStatic)
             {
-                MovingPlatform.OnPlatformTriggerEnter(col.transform);
+                var rigid = col.gameObject.GetComponent<Rigidbody2D>();
+                
+                if (rigid != null && rigid.bodyType != RigidbodyType2D.Static)
+                    MovingPlatform.OnPlatformTriggerEnter(rigid);
             }
         }
 
@@ -19,7 +22,10 @@ namespace SDAZDGAMEpol5.GameLogic
         {
             if (!col.gameObject.isStatic)
             {
-                MovingPlatform.OnPlatformTriggerExit(col.transform);
+                var rigid = col.gameObject.GetComponent<Rigidbody2D>();
+                
+                if (rigid != null && rigid.bodyType != RigidbodyType2D.Static)
+                    MovingPlatform.OnPlatformTriggerExit(rigid);
             }
         }
     }

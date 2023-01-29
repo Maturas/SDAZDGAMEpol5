@@ -6,7 +6,7 @@ namespace SDAZDGAMEpol5.GameLogic
     public class MovingPlatform : MonoBehaviour
     {
         [field: SerializeField]
-        private Transform Platform { get; set; }
+        private Rigidbody2D Platform { get; set; }
         
         [field: SerializeField]
         private Transform A { get; set; }
@@ -21,7 +21,7 @@ namespace SDAZDGAMEpol5.GameLogic
         private Transform To { get; set; }
         private float TValue { get; set; }
         
-        private List<Transform> TransformsInTrigger { get; set; }
+        private List<Rigidbody2D> RigidbodiesInTrigger { get; set; }
 
         // Assumption #1: we always move on a straight line between A and B
         // Assumption #2: we move at a constant speed
@@ -34,27 +34,28 @@ namespace SDAZDGAMEpol5.GameLogic
             TValue = 0.0f;
 
             Platform.position = From.position;
-            TransformsInTrigger = new List<Transform>();
+            RigidbodiesInTrigger = new List<Rigidbody2D>();
         }
 
-        private void Update()
+        private void FixedUpdate()
         {
             var previousPosition = Platform.position;
             
             // Calculate the t parameter for lerp function, by adding time since last frame multiplied by speed
-            TValue = Mathf.Clamp(TValue + Time.deltaTime / TravelTime, 0.0f, 1.0f);
+            TValue = Mathf.Clamp(TValue + Time.fixedDeltaTime / TravelTime, 0.0f, 1.0f);
 
             // 0-1
             // 0 - From position
             // 1 - To position
             // 0.5 - halfway between From and To
-            var newPosition = Vector3.Lerp(From.position, To.position, TValue);
+            var newPosition = Vector2.Lerp(From.position, To.position, TValue);
             var deltaPosition = newPosition - previousPosition;
-            Platform.position = newPosition;
+            Platform.MovePosition(newPosition);
 
-            foreach (var trans in TransformsInTrigger)
+            // TODO Improve, allow player to jump and move freely
+            foreach (var rigid in RigidbodiesInTrigger)
             {
-                trans.position += deltaPosition;
+                rigid.MovePosition(rigid.position + deltaPosition);
             }
 
             if (Mathf.Approximately(TValue, 1.0f))
@@ -65,16 +66,16 @@ namespace SDAZDGAMEpol5.GameLogic
             }
         }
 
-        public void OnPlatformTriggerEnter(Transform obj)
+        public void OnPlatformTriggerEnter(Rigidbody2D obj)
         {
-            if (!TransformsInTrigger.Contains(obj))
-                TransformsInTrigger.Add(obj);
+            if (!RigidbodiesInTrigger.Contains(obj))
+                RigidbodiesInTrigger.Add(obj);
         }
 
-        public void OnPlatformTriggerExit(Transform obj)
+        public void OnPlatformTriggerExit(Rigidbody2D obj)
         {
-            if (TransformsInTrigger.Contains(obj))
-                TransformsInTrigger.Remove(obj);
+            if (RigidbodiesInTrigger.Contains(obj))
+                RigidbodiesInTrigger.Remove(obj);
         }
     }
 }
